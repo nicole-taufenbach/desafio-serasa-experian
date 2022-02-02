@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Pessoa {
 	
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String nome;
@@ -23,6 +23,8 @@ public class Pessoa {
 	private String estado;
 	
 	private int score;
+	
+	private String scoreDescricao;
 
 	public Integer getId() {
 		return id;
@@ -78,6 +80,14 @@ public class Pessoa {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public String getScoreDescricao() {
+		return scoreDescricao;
+	}
+
+	public void setScoreDescricao(String scoreDescricao) {
+		this.scoreDescricao = scoreDescricao;
 	}
 	
 }
