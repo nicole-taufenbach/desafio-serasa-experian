@@ -1,4 +1,4 @@
-package com.serasa.experian.rest.service;
+package com.serasa.experian.rest.api;
 
 import java.util.Optional;
 
@@ -11,40 +11,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import com.serasa.experian.rest.api.model.Pessoa;
-import com.serasa.experian.rest.api.repository.PessoaRepository;
+import com.serasa.experian.rest.api.service.PessoaService;
 
 @SpringBootTest
-class PessoaTest {
+class PessoaJUnitTest {
 
 	@Autowired
-	private PessoaRepository repository;
+	private PessoaService service;
 	
-	@Test
 	@Order(1)
 	@Rollback(value = false)
+	@Test
 	void salvarTest() {
-		Pessoa pessoa = new Pessoa();
-		pessoa.setNome("Fulano de Tal");
-		pessoa.setTelefone("99 99999-9999");
-		pessoa.setIdade(99);
-		pessoa.setCidade("Cidade de Fulano");
-		pessoa.setEstado("XX");
-		pessoa.setScore(1000);
-		
-		repository.save(pessoa);
-		
+		Pessoa pessoa = new Pessoa("Fulano de Tal", "99 99999-9999", 99, "Cidade de Fulano", "XX", 1000);
+		service.addPessoa(pessoa);
 		Assertions.assertThat(pessoa.getId()).isGreaterThan(0);
 	}
 	
 	@Test
 	void consultarTest() {
-		Optional<Pessoa> findById = repository.findById(1);
+		Optional<Pessoa> findById = service.getPessoaById(1);
 		Assertions.assertThat(findById.isPresent());
 	}
 	
-	@Test 
+	@Test
 	void consultarTodosTest() {
-        Iterable<Pessoa> pessoas = repository.findAll();
+        Iterable<Pessoa> pessoas = service.getPessoas();
         Assertions.assertThat(IterableUtils.size(pessoas)).isGreaterThan(0);
 	}
 

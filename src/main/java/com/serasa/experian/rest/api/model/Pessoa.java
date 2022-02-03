@@ -5,12 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Pessoa {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -27,6 +26,19 @@ public class Pessoa {
 	
 	private String scoreDescricao;
 
+	public Pessoa() {
+	}
+	
+	public Pessoa(String nome, String telefone, int idade, String cidade, String estado, int score) {
+		super();
+		this.nome = nome;
+		this.telefone = telefone;
+		this.idade = idade;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.score = score;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
