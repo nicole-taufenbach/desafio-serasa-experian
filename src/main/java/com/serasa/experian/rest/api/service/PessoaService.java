@@ -42,22 +42,24 @@ public class PessoaService {
 	}
 	
 	public void setarScoreDescricao(Pessoa pessoa) {
-		int score = pessoa.getScore();
-		ScoreDescricao scoreDescricao = null;
-		
-		if (score >= 0 && score <= 1000) {
-			if (score > 700) {
-				scoreDescricao = ScoreDescricao.RECOMENDAVEL;
-			} else if (score > 500) {
-				scoreDescricao = ScoreDescricao.ACEITAVEL;
-			} else if (score > 200) {
-				scoreDescricao = ScoreDescricao.INACEITAVEL;
-			} else {
-				scoreDescricao = ScoreDescricao.INSUFICIENTE;
-			}
-		} else throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-		
-		pessoa.setScoreDescricao(scoreDescricao.toString());
+		if (pessoa != null) {
+			int score = pessoa.getScore();
+			ScoreDescricao scoreDescricao = null;
+			
+			if (score >= 0 && score <= 1000) {
+				if (score > 700) {
+					scoreDescricao = ScoreDescricao.RECOMENDAVEL;
+				} else if (score > 500) {
+					scoreDescricao = ScoreDescricao.ACEITAVEL;
+				} else if (score > 200) {
+					scoreDescricao = ScoreDescricao.INACEITAVEL;
+				} else {
+					scoreDescricao = ScoreDescricao.INSUFICIENTE;
+				}
+			} else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O score inserido deve ser entre 0 e 1000.");
+			
+			pessoa.setScoreDescricao(scoreDescricao.toString());
+		}
 	}
 	
 }
