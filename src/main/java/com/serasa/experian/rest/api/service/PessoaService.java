@@ -33,7 +33,7 @@ public class PessoaService {
 	public Pessoa getPessoaById(Integer id) {
 		Pessoa pessoa = null;
 		Optional<Pessoa> optional = repository.findById(id);
-		if (optional != null) {
+		if (optional != null && !optional.isEmpty()) {
 			pessoa = optional.get();
 		}
 		return pessoa;
