@@ -7,8 +7,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.serasa.experian.rest.api.config.ModelMapperConfig;
 import com.serasa.experian.rest.api.model.Pessoa;
 
+/**
+ * Classe responsável por auxiliar conversões de DTO para Model e vice-versa.
+ * Utiliza o ModelMapper que tem instâncias gerenciadas por {@link ModelMapperConfig}.
+ * @author Nicole Taufenbach
+ */
 @Component
 public class PessoaMapper {
 

@@ -21,6 +21,10 @@ import com.serasa.experian.rest.api.model.ScoreDescricao;
 import com.serasa.experian.rest.api.repository.PessoaRepository;
 import com.serasa.experian.rest.api.service.PessoaService;
 
+/**
+ * Teste que valida todos os métodos da {@link PessoaService}.
+ * @author Nicole Taufenbach
+ */
 @SpringBootTest
 public class PessoaServiceTest {
 	
@@ -33,8 +37,7 @@ public class PessoaServiceTest {
     private PessoaRepository repository;
     
 	private Pessoa createPessoa() {
-		Pessoa pessoa = new Pessoa("Fulano de Tal", "99 99999-9999", 11, "São Paulo", "SP", 900);
-		return pessoa;
+		return new Pessoa("Fulano de Tal", "99 99999-9999", 11, "São Paulo", "SP", 900);
 	}
 	
     @Test
@@ -100,13 +103,13 @@ public class PessoaServiceTest {
     	Pessoa pessoa = new Pessoa();
     	ResponseStatusException thrown = new ResponseStatusException(HttpStatus.BAD_REQUEST);
     	
-    	pessoa.setScore(-100);
+    	pessoa.setScore(-1);
     	thrown = Assertions.assertThrows(ResponseStatusException.class, () -> {
     		service.setarScoreDescricao(pessoa);
     	});
     	Assertions.assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
     	
-    	pessoa.setScore(1000);
+    	pessoa.setScore(1001);
     	thrown = Assertions.assertThrows(ResponseStatusException.class, () -> {
     		service.setarScoreDescricao(pessoa);
     	});

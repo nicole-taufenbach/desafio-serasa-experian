@@ -6,7 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.serasa.experian.rest.api.dto.PessoaDTO;
 
+/**
+ * Representa uma pessoa e contém os dados que serão enviados pelo controller.
+ * Seu DTO é {@link PessoaDTO}.
+ * @author Nicole Taufenbach
+ */
 @Entity
 public class Pessoa {
 

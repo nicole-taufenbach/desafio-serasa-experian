@@ -20,6 +20,11 @@ import com.serasa.experian.rest.api.dto.PessoaMapper;
 import com.serasa.experian.rest.api.model.Pessoa;
 import com.serasa.experian.rest.api.service.PessoaService;
 
+/**
+ * Controller responsável por cuidar das requisições da API.
+ * Executa chamadas ao serviço para acessar a lógica da aplicação.
+ * @author Nicole Taufenbach
+ */
 @RestController
 @RequestMapping({"/pessoa"})
 public class PessoaController {

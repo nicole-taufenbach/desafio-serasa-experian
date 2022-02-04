@@ -10,10 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.serasa.experian.rest.api.controller.PessoaController;
 import com.serasa.experian.rest.api.model.Pessoa;
 import com.serasa.experian.rest.api.model.ScoreDescricao;
 import com.serasa.experian.rest.api.repository.PessoaRepository;
 
+/**
+ * Manipula a lógica da aplicação com os dados recebidos do {@link PessoaController}. 
+ * @author Nicole Taufenbach
+ */
 @Service
 public class PessoaService {
 	

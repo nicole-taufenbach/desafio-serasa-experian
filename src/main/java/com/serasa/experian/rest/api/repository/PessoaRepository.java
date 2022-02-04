@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.serasa.experian.rest.api.model.Pessoa;
 
+/**
+ * Interface responsável por abstrair a persistência de dados. 
+ * @author Nicole Taufenbach
+ */
 @Repository
 public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
 
