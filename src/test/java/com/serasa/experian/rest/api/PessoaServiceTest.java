@@ -1,12 +1,14 @@
 package com.serasa.experian.rest.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.collections4.IterableUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -23,12 +25,13 @@ import com.serasa.experian.rest.api.service.PessoaService;
 
 /**
  * Teste que valida todos os métodos da {@link PessoaService}.
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 @SpringBootTest
 public class PessoaServiceTest {
 	
-	private static int ID = 1;
+	private static int ID_DEFAULT = 1;
+	private static int ID_ALTERNATIVE = 5;
 
     @Autowired
     private PessoaService service;
@@ -61,15 +64,26 @@ public class PessoaServiceTest {
     			   new Pessoa("Ciclano de Tal", "99 99999-9999", 12, "Blumenau", "SC", 600),
 	    		   new Pessoa("Beltrano de Tal", "99 99999-9999", 13, "São Carlos", "SP", 300))
     		   .collect(Collectors.toList()));
-       assertEquals(3, IterableUtils.size(service.getPessoas()));
+       assertEquals(3, service.getPessoas().size());
     }
     
+    @Test
+    public void getPessoasEmptyTest() {
+       Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
+       assertTrue(service.getPessoas().isEmpty());
+    }
     
     @Test
     public void getPessoaByIdTest() {
     	Pessoa pessoa = createPessoa();
-		Mockito.when(repository.findById(ID)).thenReturn(Optional.of(pessoa));
-		assertEquals(pessoa, service.getPessoaById(ID));
+		Mockito.when(repository.findById(ID_DEFAULT)).thenReturn(Optional.of(pessoa));
+		assertEquals(pessoa, service.getPessoaById(ID_DEFAULT));
+    }
+    
+    @Test
+    public void getPessoaByIdInexistenteTest() {
+		Mockito.when(repository.findById(ID_ALTERNATIVE)).thenReturn(null);
+		assertNull(service.getPessoaById(ID_ALTERNATIVE));
     }
     
     @Test
@@ -107,13 +121,13 @@ public class PessoaServiceTest {
     	thrown = Assertions.assertThrows(ResponseStatusException.class, () -> {
     		service.setarScoreDescricao(pessoa);
     	});
-    	Assertions.assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
+    	assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
     	
     	pessoa.setScore(1001);
     	thrown = Assertions.assertThrows(ResponseStatusException.class, () -> {
     		service.setarScoreDescricao(pessoa);
     	});
-    	Assertions.assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
+    	assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
     }
     
 }

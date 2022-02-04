@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Configurações do ModelMapper, responsável por cuidar das instâncias.
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 @Configuration
 public class ModelMapperConfig {

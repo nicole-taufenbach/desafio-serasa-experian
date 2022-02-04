@@ -7,7 +7,7 @@ import com.serasa.experian.rest.api.model.Pessoa;
  * Representa um DTO de {@link Pessoa}.
  * Contém apenas os atributos necessários para o retorno solicitado do 
  * <code>consultar(@PathVariable("id") int id)</code> no {@link PessoaController}
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 public class PessoaGetPessoaByIdDTO {
 

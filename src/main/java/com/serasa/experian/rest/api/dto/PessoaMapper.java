@@ -13,7 +13,7 @@ import com.serasa.experian.rest.api.model.Pessoa;
 /**
  * Classe responsável por auxiliar conversões de DTO para Model e vice-versa.
  * Utiliza o ModelMapper que tem instâncias gerenciadas por {@link ModelMapperConfig}.
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 @Component
 public class PessoaMapper {

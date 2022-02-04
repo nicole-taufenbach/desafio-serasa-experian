@@ -11,7 +11,7 @@ import com.serasa.experian.rest.api.dto.PessoaDTO;
 /**
  * Representa uma pessoa e contém os dados que serão enviados pelo controller.
  * Seu DTO é {@link PessoaDTO}.
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 @Entity
 public class Pessoa {

@@ -17,7 +17,7 @@ import com.serasa.experian.rest.api.repository.PessoaRepository;
 
 /**
  * Manipula a lógica da aplicação com os dados recebidos do {@link PessoaController}. 
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 @Service
 public class PessoaService {
@@ -32,8 +32,8 @@ public class PessoaService {
 	
 	public Pessoa getPessoaById(Integer id) {
 		Pessoa pessoa = null;
-		Optional<Pessoa> optional =  repository.findById(id);
-		if (!optional.isEmpty()) {
+		Optional<Pessoa> optional = repository.findById(id);
+		if (optional != null) {
 			pessoa = optional.get();
 		}
 		return pessoa;

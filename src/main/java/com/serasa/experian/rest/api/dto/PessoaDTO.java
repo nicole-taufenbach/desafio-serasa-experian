@@ -6,7 +6,7 @@ import com.serasa.experian.rest.api.model.Pessoa;
  * Representa um DTO de {@link Pessoa} com todas as informações. 
  * Utilizado para retornar todas as informações ao fazer um POST.
  * Auxilia na prevenção de injeções de SQL.
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 public class PessoaDTO {
 

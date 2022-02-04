@@ -23,7 +23,7 @@ import com.serasa.experian.rest.api.service.PessoaService;
 /**
  * Controller responsável por cuidar das requisições da API.
  * Executa chamadas ao serviço para acessar a lógica da aplicação.
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 @RestController
 @RequestMapping({"/pessoa"})

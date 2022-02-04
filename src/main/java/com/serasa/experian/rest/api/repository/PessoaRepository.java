@@ -7,7 +7,7 @@ import com.serasa.experian.rest.api.model.Pessoa;
 
 /**
  * Interface responsável por abstrair a persistência de dados. 
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  */
 @Repository
 public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {

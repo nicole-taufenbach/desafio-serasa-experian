@@ -2,7 +2,7 @@ package com.serasa.experian.rest.api.model;
 
 /**
  * Enumerador responsável por centralizar os textos do atributo scoreDescricao da {@link Pessoa}.
- * @author Nicole Taufenbach
+ * @author Nicole Taufenbach <ntaufenbach@hotmail.com>
  *
  */
 public enum ScoreDescricao {
