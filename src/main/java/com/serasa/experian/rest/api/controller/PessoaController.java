@@ -42,7 +42,7 @@ public class PessoaController {
                 .path("/{id}")
                 .buildAndExpand(save.getId())
                 .toUri();
-        return ResponseEntity.created(location).body(mapper.pessoaToPessoaDTO(pessoa));
+        return ResponseEntity.created(location).body(mapper.pessoaToPessoaDTO(save));
 	}
 
 	@GetMapping(path = "/{id}")
