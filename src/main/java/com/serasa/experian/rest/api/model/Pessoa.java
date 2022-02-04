@@ -13,17 +13,16 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private Integer id;
+	private int id;
 	
 	private String nome;
 	private String telefone;
 	private int idade;
 	private String cidade;
 	private String estado;
-	
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int score;
 	
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private String scoreDescricao;
 
 	public Pessoa() {
@@ -39,11 +38,11 @@ public class Pessoa {
 		this.score = score;
 	}
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

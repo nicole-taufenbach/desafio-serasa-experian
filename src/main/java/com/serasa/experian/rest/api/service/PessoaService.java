@@ -1,6 +1,7 @@
 package com.serasa.experian.rest.api.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.serasa.experian.rest.api.model.Pessoa;
+import com.serasa.experian.rest.api.model.ScoreDescricao;
 import com.serasa.experian.rest.api.repository.PessoaRepository;
 
 @Service
@@ -23,31 +25,39 @@ public class PessoaService {
 		return repository.save(pessoa);
 	}
 	
-	public Iterable<Pessoa> getPessoas() {
-		Iterable<Pessoa> pessoas = repository.findAll();
-		return pessoas;
+	public Pessoa getPessoaById(Integer id) {
+		Pessoa pessoa = null;
+		Optional<Pessoa> optional =  repository.findById(id);
+		if (!optional.isEmpty()) {
+			pessoa = optional.get();
+		}
+		return pessoa;
 	}
 	
-	public Optional<Pessoa> getPessoaById(Integer id) {
-		return repository.findById(id);
+	public List<Pessoa> getPessoas() {
+		List<Pessoa> result = new ArrayList<Pessoa>();
+		Iterable<Pessoa> pessoas = repository.findAll();
+		pessoas.forEach(result::add);
+		return result;
 	}
 	
 	public void setarScoreDescricao(Pessoa pessoa) {
 		int score = pessoa.getScore();
-		String scoreDescricao = null;
+		ScoreDescricao scoreDescricao = null;
 		
-		if (score <= 1000 && score >= 0) {
-			if (score <= 1000 && score >= 701) {
-				scoreDescricao = "Recomendável";
-			} else if (score <= 700 && score >= 501) {
-				scoreDescricao = "Aceitável";
-			} else if (score <= 500 && score >= 201) {
-				scoreDescricao = "Inaceitável";
+		if (score >= 0 && score <= 1000) {
+			if (score > 700) {
+				scoreDescricao = ScoreDescricao.RECOMENDAVEL;
+			} else if (score > 500) {
+				scoreDescricao = ScoreDescricao.ACEITAVEL;
+			} else if (score > 200) {
+				scoreDescricao = ScoreDescricao.INACEITAVEL;
 			} else {
-				scoreDescricao = "Insuficiente";
+				scoreDescricao = ScoreDescricao.INSUFICIENTE;
 			}
 		} else throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		
-		pessoa.setScoreDescricao(scoreDescricao);
+		pessoa.setScoreDescricao(scoreDescricao.toString());
 	}
+	
 }

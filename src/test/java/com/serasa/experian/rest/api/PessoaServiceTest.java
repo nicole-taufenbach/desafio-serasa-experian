@@ -16,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.serasa.experian.rest.api.model.Pessoa;
+import com.serasa.experian.rest.api.model.ScoreDescricao;
 import com.serasa.experian.rest.api.repository.PessoaRepository;
 import com.serasa.experian.rest.api.service.PessoaService;
 
@@ -49,10 +50,10 @@ public class PessoaServiceTest {
     
     @Test
     public void getPessoaByIdTest() {
-    	Integer id = 1;
+    	int id = 1;
     	Pessoa pessoa = new Pessoa("Fulano de Tal", "99 99999-9999", 11, "São Paulo", "SP", 900);
 		Mockito.when(repository.findById(id)).thenReturn(Optional.of(pessoa));
-		assertEquals(Optional.of(pessoa), service.getPessoaById(id));
+		assertEquals(pessoa, service.getPessoaById(id));
     }
 
     @Test
@@ -62,22 +63,22 @@ public class PessoaServiceTest {
     	
     	pessoa.setScore(200);
     	service.setarScoreDescricao(pessoa);
-    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn("Insuficiente");
+    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn(ScoreDescricao.INSUFICIENTE.toString());
     	assertEquals(pessoaMock.getScoreDescricao(), pessoa.getScoreDescricao());
     	
     	pessoa.setScore(500);
     	service.setarScoreDescricao(pessoa);
-    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn("Inaceitável");
+    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn(ScoreDescricao.INACEITAVEL.toString());
     	assertEquals(pessoaMock.getScoreDescricao(), pessoa.getScoreDescricao());
     	
     	pessoa.setScore(700);
     	service.setarScoreDescricao(pessoa);
-    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn("Aceitável");
+    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn(ScoreDescricao.ACEITAVEL.toString());
     	assertEquals(pessoaMock.getScoreDescricao(), pessoa.getScoreDescricao());
     	
     	pessoa.setScore(900);
     	service.setarScoreDescricao(pessoa);
-    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn("Recomendável");
+    	Mockito.when(pessoaMock.getScoreDescricao()).thenReturn(ScoreDescricao.RECOMENDAVEL.toString());
 		assertEquals(pessoaMock.getScoreDescricao(), pessoa.getScoreDescricao());
     }
     
